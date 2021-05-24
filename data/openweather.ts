@@ -1,10 +1,8 @@
 import axios from 'axios';
-import { number } from 'envvar';
 import * as qs from 'query-string';
 
 import { LatLong, OpenWeatherOncallResponse, OpenWeatherUnits } from '../models';
 import { OPEN_WEATHER_API_KEY } from './config';
-
 
 // Open Weather Docs: https://openweathermap.org/api
 
@@ -27,7 +25,7 @@ export async function onecall(
   const queryString = qs.stringify(queries);
   try {
     const result = await axios.get(`${apiHost}onecall?${queryString}`);
-    return result as unknown as OpenWeatherOncallResponse;
+    return result.data as unknown as OpenWeatherOncallResponse;
   } catch (err) {
     console.error(err);
     throw err;
