@@ -11,7 +11,7 @@ async function dailyCheck() {
 
   // check for wind speeds
   if (tomorrow.wind_gust > THRESHOLDS.wind_gust) {
-    sendSlackMessage(`Wind gusts tomorrow of ${tomorrow.wind_gust}`);
+    sendSlackMessage(`Wind gusts tomorrow of ${tomorrow.wind_gust} mph`);
   }
 }
 
