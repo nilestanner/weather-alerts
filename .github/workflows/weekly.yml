@@ -1,0 +1,27 @@
+name: Weekly
+
+on:
+  schedule:
+   - cron: "0 1 * * 0"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      OPEN_WEATHER_API_KEY: ${{ secrets.OPEN_WEATHER_API_KEY }}
+      LAT: ${{ secrets.LAT }}
+      LONG: ${{ secrets.LONG }}
+      THRESHOLD_WIND_GUST: ${{ secrets.THRESHOLD_WIND_GUST }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12
+      - name: Setup project
+        run: make setup build
+      - name: Run Script
+        run: make weeklycheck

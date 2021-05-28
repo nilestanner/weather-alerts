@@ -9,3 +9,6 @@ watch:
 
 dailycheck:
 	node dist/jobs/daily-check.js
+
+weeklycheck:
+	node dist/jobs/weekly-check.js
