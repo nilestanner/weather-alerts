@@ -13,6 +13,12 @@ async function dailyCheck() {
   if (tomorrow.wind_gust > THRESHOLDS.wind_gust) {
     sendSlackMessage(`Wind gusts tomorrow of ${tomorrow.wind_gust} mph`);
   }
+  if (tomorrow.rain != null && tomorrow.rain > 0) {
+    sendSlackMessage(`Total percipitation tomorrow of ${tomorrow.rain} inches`);
+  }
+  if (tomorrow.snow != null && tomorrow.snow > 0) {
+    sendSlackMessage(`Total snow tomorrow of ${tomorrow.snow} inches`);
+  }
 }
 
 dailyCheck().then(() => {
