@@ -12,7 +12,15 @@ jobs:
       - image: circleci/node:16.10
     working_directory: ~/repo
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
       - run: make setup build
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: make dailycheck
 
   startweekly:
@@ -20,7 +28,15 @@ jobs:
       - image: circleci/node:16.10
     working_directory: ~/repo
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
       - run: make setup build
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: make weeklycheck
 
 
