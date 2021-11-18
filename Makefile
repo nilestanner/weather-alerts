@@ -2,7 +2,7 @@ setup:
 	npm ci
 
 build:
-	tsc
+	npm run build
 
 watch:
 	tsc -w
