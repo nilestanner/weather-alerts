@@ -52,7 +52,7 @@ workflows:
               only:
                 - master
     jobs:
-      - startweekly
+      - startdayily
 
   weather-alerts-weekly:
     triggers:
@@ -63,4 +63,4 @@ workflows:
               only:
                 - master
     jobs:
-      - startdayily
+      - startweekly
