@@ -7,6 +7,9 @@ build:
 watch:
 	tsc -w
 
+morningcheck:
+	node dist/jobs/morning-check.js
+
 dailycheck:
 	node dist/jobs/daily-check.js
 

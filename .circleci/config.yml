@@ -7,6 +7,21 @@ orbs:
   node: circleci/node@4.7
 
 jobs:
+  startmorning:
+    docker:
+      - image: circleci/node:16.10
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run: make setup build
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: make startmorning
   startdayily:
     docker:
       - image: circleci/node:16.10
@@ -53,6 +68,17 @@ workflows:
                 - master
     jobs:
       - startdayily
+
+  weather-alerts-morning:
+    triggers:
+      - schedule:
+          cron: "0 13 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - startmorning
 
   weather-alerts-weekly:
     triggers:

@@ -2,6 +2,7 @@ require('dotenv').config();
 import { LatLong } from '../models';
 
 export const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
+export const AMBEE_API_KEY = process.env.AMBEE_API_KEY;
 export const SLACK_WEBHOOK = process.env.SLACK_WEBHOOK;
 
 export const LATLONG: LatLong = {
@@ -11,4 +12,5 @@ export const LATLONG: LatLong = {
 
 export const THRESHOLDS = {
   wind_gust: parseFloat(process.env.THRESHOLD_WIND_GUST ?? '999999'),
+  pollen: parseFloat(process.env.THRESHOLD_POLLEN ?? '9999999'),
 }
